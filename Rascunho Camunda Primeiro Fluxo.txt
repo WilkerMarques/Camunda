@@ -1,0 +1,25 @@
+Site
+-> Clica em um link site
+-> Cadastrar o Curriculi
+-> Clicar no botão (cadastrar)
+
+RH - SECRETARIA
+Grupo -> secretariaRH
+
+RH - GERENCIA
+Grupo -> secretariaRH
+
+* variavel "cancelar" = true ou false
+* variavel "reprovado" = true ou false
+* variavel "nome_candidato" = String
+* variavel "telefone_contato = String
+* variavel "email" = String
+* variavel "curriculo" = File
+* variavel "setor_classificado" = String
+* variavel "obs_classificar_curriculo" = String
+* variavel "obs_avaliacao_gestor_RH" = String
+* variavel "obs_avaliacao_antecedentes" = String
+* variavel "obs_avaliacao_interpessoal" = String
+* variavel "obs_avaliacao_setor" = String
+* variavel "data_entrevista" = Date
+* variavel "obs_agendar_entrevista" = String

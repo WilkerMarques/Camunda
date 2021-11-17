@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1d41ake" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.9.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.15.0">
+  <bpmn:collaboration id="Collaboration_0wz0yiy">
+    <bpmn:participant id="Participant_0qb9hag" name="Controle de Curriculos" processRef="AnaliseCurriculo" />
+  </bpmn:collaboration>
+  <bpmn:process id="AnaliseCurriculo" name="Analise Curriculo" isExecutable="true" camunda:versionTag="1.0">
+    <bpmn:laneSet id="LaneSet_1wt922e">
+      <bpmn:lane id="Lane_1apa2o3" name="RH Gerencia">
+        <bpmn:flowNodeRef>Activity_1q44y8v</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_05bhjdr</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0hdvini</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0f8k93j</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_17z6r8y" name="RH-Secretaria">
+        <bpmn:flowNodeRef>Activity_13h1ong</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0o3s00p</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_0w811op</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>reprovado_clasificar_curriculo</bpmn:flowNodeRef>
+      </bpmn:lane>
+      <bpmn:lane id="Lane_0opp899" name="Site">
+        <bpmn:flowNodeRef>StartEvent_1</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1nrqqtc</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Activity_1qabd7h</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_14snexs</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_0onhwtk</bpmn:flowNodeRef>
+        <bpmn:flowNodeRef>Event_16c7gyd</bpmn:flowNodeRef>
+      </bpmn:lane>
+    </bpmn:laneSet>
+    <bpmn:startEvent id="StartEvent_1">
+      <bpmn:outgoing>Flow_09dn90u</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:userTask id="Activity_1nrqqtc" name="Cadastro Curriculo" default="Flow_1kxcqtm">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_09dn90u</bpmn:incoming>
+      <bpmn:outgoing>Flow_1kxcqtm</bpmn:outgoing>
+      <bpmn:outgoing>Flow_17tjf9e</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1q44y8v" name="Avaliação Gestor RH" default="Flow_0dm84yd">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="obs_avaliacao_gestor_RH" label="Observação Avaliacao Gestor RH" type="string" />
+          <camunda:formField id="reprovado" label="Reprovado" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0xchyvq</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dm84yd</bpmn:outgoing>
+      <bpmn:outgoing>Flow_10x39ay</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_13h1ong" name="Classificar Curriculo" default="Flow_0xchyvq">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="setor_classificado" label="Setor Classificado" type="string" />
+          <camunda:formField id="obs_classificar_curriculo" label="Obsevação Clasificar Curriculo" type="string" />
+          <camunda:formField id="reprovado" label="Reprovado" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1kxcqtm</bpmn:incoming>
+      <bpmn:outgoing>Flow_0xchyvq</bpmn:outgoing>
+      <bpmn:outgoing>Flow_06hbspg</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_0o3s00p" name="Agendar Entrevista" default="Flow_11dj0g2">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="data_entrevista" label="Data Entrevista" type="date" />
+          <camunda:formField id="obs_agendar_entrevista" label="Observação Agendar Entrevista" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0k4xbcl</bpmn:incoming>
+      <bpmn:outgoing>Flow_11dj0g2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1qabd7h" name="Receber Resultado" default="Flow_1ee301t">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="reprovado" label="Reprovado" type="boolean" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_11dj0g2</bpmn:incoming>
+      <bpmn:outgoing>Flow_1ee301t</bpmn:outgoing>
+      <bpmn:outgoing>Flow_173vv8g</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_05bhjdr" name="Classificação Setores" default="Flow_0k4xbcl">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="obs_avaliacao_setor" label="Observação Avaliacao Setor" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0clcht3</bpmn:incoming>
+      <bpmn:outgoing>Flow_0k4xbcl</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:serviceTask id="Activity_0w811op" name="Avaliação Antecedentes" default="Flow_1k9nai0" camunda:expression="${execution.setVariable(&#39;obs_avaliacao_antecedentes&#39;, &#34;Gente Boa.&#34;)}">
+      <bpmn:incoming>Flow_0dm84yd</bpmn:incoming>
+      <bpmn:outgoing>Flow_1k9nai0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:userTask id="Activity_0hdvini" name="Avaliação InterPessoal" default="Flow_0clcht3">
+      <bpmn:extensionElements>
+        <camunda:formData>
+          <camunda:formField id="none_candidato" label="Nome Candidato" type="string" />
+          <camunda:formField id="telefone_contato" label="Telefone Contato" type="string" />
+          <camunda:formField id="email" label="Email" type="string" />
+          <camunda:formField id="cancelar" label="Cancelar" type="boolean" />
+          <camunda:formField id="curriculo" label="Curriculo" type="string" />
+          <camunda:formField id="obs_avaliacao_interpessoal" label="Observação Avaliacao Interpessoal" type="string" />
+          <camunda:formField id="obs_avaliacao_antecedentes" type="string" />
+        </camunda:formData>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1k9nai0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0clcht3</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:endEvent id="reprovado_clasificar_curriculo">
+      <bpmn:incoming>Flow_06hbspg</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0f8k93j">
+      <bpmn:incoming>Flow_10x39ay</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_14snexs">
+      <bpmn:incoming>Flow_173vv8g</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_0onhwtk">
+      <bpmn:incoming>Flow_1ee301t</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:endEvent id="Event_16c7gyd">
+      <bpmn:incoming>Flow_17tjf9e</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_173vv8g" sourceRef="Activity_1qabd7h" targetRef="Event_14snexs">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${reprovado == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_17tjf9e" sourceRef="Activity_1nrqqtc" targetRef="Event_16c7gyd">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${cancelar == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_10x39ay" sourceRef="Activity_1q44y8v" targetRef="Event_0f8k93j">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${reprovado == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_06hbspg" sourceRef="Activity_13h1ong" targetRef="reprovado_clasificar_curriculo">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${reprovado == true}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:sequenceFlow id="Flow_0clcht3" sourceRef="Activity_0hdvini" targetRef="Activity_05bhjdr" />
+    <bpmn:sequenceFlow id="Flow_1ee301t" sourceRef="Activity_1qabd7h" targetRef="Event_0onhwtk" />
+    <bpmn:sequenceFlow id="Flow_11dj0g2" sourceRef="Activity_0o3s00p" targetRef="Activity_1qabd7h" />
+    <bpmn:sequenceFlow id="Flow_0k4xbcl" sourceRef="Activity_05bhjdr" targetRef="Activity_0o3s00p" />
+    <bpmn:sequenceFlow id="Flow_1k9nai0" sourceRef="Activity_0w811op" targetRef="Activity_0hdvini" />
+    <bpmn:sequenceFlow id="Flow_0dm84yd" sourceRef="Activity_1q44y8v" targetRef="Activity_0w811op" />
+    <bpmn:sequenceFlow id="Flow_0xchyvq" sourceRef="Activity_13h1ong" targetRef="Activity_1q44y8v" />
+    <bpmn:sequenceFlow id="Flow_1kxcqtm" sourceRef="Activity_1nrqqtc" targetRef="Activity_13h1ong" />
+    <bpmn:sequenceFlow id="Flow_09dn90u" sourceRef="StartEvent_1" targetRef="Activity_1nrqqtc" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_0wz0yiy">
+      <bpmndi:BPMNShape id="Participant_0qb9hag_di" bpmnElement="Participant_0qb9hag" isHorizontal="true">
+        <dc:Bounds x="175" y="118" width="700" height="493" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_1apa2o3_di" bpmnElement="Lane_1apa2o3" isHorizontal="true">
+        <dc:Bounds x="205" y="451" width="670" height="160" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_17z6r8y_di" bpmnElement="Lane_17z6r8y" isHorizontal="true">
+        <dc:Bounds x="205" y="281" width="670" height="170" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Lane_0opp899_di" bpmnElement="Lane_0opp899" isHorizontal="true">
+        <dc:Bounds x="205" y="118" width="670" height="163" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_173vv8g_di" bpmnElement="Flow_173vv8g">
+        <di:waypoint x="665" y="191" />
+        <di:waypoint x="613" y="191" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_17tjf9e_di" bpmnElement="Flow_17tjf9e">
+        <di:waypoint x="435" y="191" />
+        <di:waypoint x="477" y="191" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_10x39ay_di" bpmnElement="Flow_10x39ay">
+        <di:waypoint x="335" y="531" />
+        <di:waypoint x="303" y="531" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_06hbspg_di" bpmnElement="Flow_06hbspg">
+        <di:waypoint x="335" y="371" />
+        <di:waypoint x="303" y="371" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0clcht3_di" bpmnElement="Flow_0clcht3">
+        <di:waypoint x="605" y="531" />
+        <di:waypoint x="665" y="531" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1ee301t_di" bpmnElement="Flow_1ee301t">
+        <di:waypoint x="765" y="191" />
+        <di:waypoint x="817" y="191" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_11dj0g2_di" bpmnElement="Flow_11dj0g2">
+        <di:waypoint x="715" y="331" />
+        <di:waypoint x="715" y="231" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0k4xbcl_di" bpmnElement="Flow_0k4xbcl">
+        <di:waypoint x="715" y="491" />
+        <di:waypoint x="715" y="411" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1k9nai0_di" bpmnElement="Flow_1k9nai0">
+        <di:waypoint x="555" y="411" />
+        <di:waypoint x="555" y="491" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dm84yd_di" bpmnElement="Flow_0dm84yd">
+        <di:waypoint x="435" y="531" />
+        <di:waypoint x="470" y="531" />
+        <di:waypoint x="470" y="371" />
+        <di:waypoint x="505" y="371" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0xchyvq_di" bpmnElement="Flow_0xchyvq">
+        <di:waypoint x="385" y="411" />
+        <di:waypoint x="385" y="491" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1kxcqtm_di" bpmnElement="Flow_1kxcqtm">
+        <di:waypoint x="385" y="231" />
+        <di:waypoint x="385" y="331" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_09dn90u_di" bpmnElement="Flow_09dn90u">
+        <di:waypoint x="303" y="191" />
+        <di:waypoint x="335" y="191" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="267" y="173" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_14jafk4_di" bpmnElement="Activity_1nrqqtc">
+        <dc:Bounds x="335" y="151" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0bhf05p_di" bpmnElement="Activity_1q44y8v">
+        <dc:Bounds x="335" y="491" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0e8fkw7_di" bpmnElement="Activity_13h1ong">
+        <dc:Bounds x="335" y="331" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_038g5ox_di" bpmnElement="Activity_0o3s00p">
+        <dc:Bounds x="665" y="331" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0xrmrtq_di" bpmnElement="Activity_1qabd7h">
+        <dc:Bounds x="665" y="151" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0w13g49_di" bpmnElement="Activity_05bhjdr">
+        <dc:Bounds x="665" y="491" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_01qyl6a_di" bpmnElement="Activity_0w811op">
+        <dc:Bounds x="505" y="331" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1lnz52x_di" bpmnElement="Activity_0hdvini">
+        <dc:Bounds x="505" y="491" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1jrtyly_di" bpmnElement="reprovado_clasificar_curriculo" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="267" y="353" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0f8k93j_di" bpmnElement="Event_0f8k93j" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="267" y="513" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_14snexs_di" bpmnElement="Event_14snexs" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
+        <dc:Bounds x="577" y="173" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0onhwtk_di" bpmnElement="Event_0onhwtk" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
+        <dc:Bounds x="817" y="173" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_16c7gyd_di" bpmnElement="Event_16c7gyd" bioc:stroke="#8e24aa" bioc:fill="#e1bee7" color:background-color="#e1bee7" color:border-color="#8e24aa">
+        <dc:Bounds x="477" y="173" width="36" height="36" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
